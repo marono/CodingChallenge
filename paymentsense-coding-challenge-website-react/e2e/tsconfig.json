@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "types": [
+      "node",
+      "@wdio/sync",
+      "@wdio/mocha-framework"
+    ],
+    "target": "ES2016"
+  }
+}
