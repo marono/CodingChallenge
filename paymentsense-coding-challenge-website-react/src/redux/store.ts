@@ -17,5 +17,6 @@ export const useAppDispatch = () => useDispatch<AppDispatch>()
 epicMiddleware.run(epics());
 
 export type RootState = ReturnType<typeof store.getState>
+export type StoreType = typeof store;
 
 export default store;
