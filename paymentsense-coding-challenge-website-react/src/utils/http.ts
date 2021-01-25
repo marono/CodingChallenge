@@ -1,8 +1,8 @@
 import { Observable } from "rxjs";
 import * as request from './request';
 
-export const httpGet = (url: string) => new Observable(s => {
-  request.get(url).then(
+export const httpGet = <T>(url: string) => new Observable<T>(s => {
+  request.get<T>(url).then(
     data => {
       s.next(data);
       s.complete();

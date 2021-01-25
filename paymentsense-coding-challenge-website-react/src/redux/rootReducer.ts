@@ -1,7 +1,9 @@
 import healthReducer from 'modules/HealthStatus/reducer';
+import countriesReducer from 'modules/CountriesList/reducer';
 
 const rootReducer = () => ({
-  health: healthReducer
+  health: healthReducer,
+  countries: countriesReducer
 });
 
 export default rootReducer;

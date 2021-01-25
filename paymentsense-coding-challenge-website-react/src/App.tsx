@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import HealthStatus from './modules/HealthStatus';
+import CountriesList from './modules/CountriesList';
 
 const App = () =>(
   <div className="App">
@@ -9,6 +10,8 @@ const App = () =>(
     </header>
     <h1>Paymentsense Coding Challenge!</h1>
     <HealthStatus />
+    <br />
+    <CountriesList />
   </div>
 );
 
