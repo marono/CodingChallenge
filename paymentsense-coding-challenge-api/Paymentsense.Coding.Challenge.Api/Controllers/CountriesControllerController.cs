@@ -17,6 +17,7 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
             this.restCountriesClient = restCountriesClient;
         }
 
+        [ResponseCache(Duration = 10)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetAllAsync()
         {
