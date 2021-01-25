@@ -10,10 +10,12 @@
 
 * Request logging
 
+* Added Poly retries and circuit breaker
+
+* Added error handling middleware
+
 * As I was running out of time I've only included one set of tests for the selectors / epics and those are in the HealthStatus module.
 
 * <CountriesList /> has a full set of tests.
 
 ## Reminders to myself
-
-* Error handling middleware

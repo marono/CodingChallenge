@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Paymentsense.Coding.Challenge.Api.Composition;
+using Paymentsense.Coding.Challenge.Api.Extensions;
 
 namespace Paymentsense.Coding.Challenge.Api
 {
@@ -41,6 +42,8 @@ namespace Paymentsense.Coding.Challenge.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseErrorHandler();
 
             app.UseHttpsRedirection();
 
