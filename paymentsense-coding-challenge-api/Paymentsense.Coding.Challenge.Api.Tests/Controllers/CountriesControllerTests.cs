@@ -20,7 +20,8 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers
         private readonly Faker<Country> countryFaker = new Faker<Country>()
             .StrictMode(true)
             .RuleFor(t => t.Name, v => v.Lorem.Word())
-            .RuleFor(t => t.Flag, v => v.Lorem.Word());
+            .RuleFor(t => t.Flag, v => v.Lorem.Word())
+            .RuleFor(t => t.Alpha3Code, v => v.Random.String(3));
 
 
         public CountriesControllerTests()

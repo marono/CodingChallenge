@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react'
 import { render as rtlRender, RenderResult, RenderOptions as rtlRenderOptions } from '@testing-library/react'
 import { createStore, Dispatch, AnyAction, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom';
 import rootReducer from 'redux/rootReducer';
 import { StoreType, RootState } from 'redux/store';
 
@@ -38,7 +39,7 @@ const render = (
   ) => RenderResult = rtlRender
 ) => {
   function Wrapper({ children }: PropsWithChildren<any>) {
-    return <Provider store={store}>{children}</Provider>
+    return <Provider store={store}><MemoryRouter>{children}</MemoryRouter></Provider>
   }
   const result = renderFn(ui, { wrapper: Wrapper, ...renderOptions });
   return {

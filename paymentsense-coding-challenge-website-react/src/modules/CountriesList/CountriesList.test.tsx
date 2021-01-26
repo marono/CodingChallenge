@@ -3,16 +3,19 @@ import { screen } from '@testing-library/react';
 import { render } from 'utils/ui-test';
 import CountriesList from './CountriesList';
 import { countriesRequestStatus, actionBuilder } from './module';
-import store from 'redux/store';
 
 describe('CountriesList />', () => {
   test('renders countries', () => {
     const countries = [
       {
-        name: "c-1"
+        name: "c-1",
+        alpha3Code: '1',
+        flag: 'f1'
       },
       {
-        name: "c-2"
+        name: "c-2",
+        alpha3Code: '2',
+        flag: 'f2'
       }
     ];
 

@@ -45,5 +45,10 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
 
             return Ok(page);
         }
+
+        [HttpGet("{code}")]
+        public async Task<ActionResult<CountryDetails>> GetAsync(string code) {
+            return Ok(await restCountriesClient.GetAsync(code));
+        }
     }
 }

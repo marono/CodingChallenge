@@ -34,3 +34,27 @@
     transform: rotate(360deg);
   }
 }
+
+.pagerContainer {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  align-items: center;
+}
+
+.pagerPage {
+  padding: 0.25rem;
+  border: solid 1px grey;
+  margin: 0.1rem;
+}
+
+.pagerPage:hover {
+  background-color: LightGrey;
+  cursor: pointer;
+}
+
+.pagerActivePage {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}

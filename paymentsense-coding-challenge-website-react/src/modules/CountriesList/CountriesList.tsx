@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RootState, AppDispatch } from 'redux/store';
 import ReactPaginate from 'react-paginate';
-import { css } from 'aphrodite/no-important';
+import { Link } from 'react-router-dom';
 import { Country } from 'types/Country';
 import * as selectors from './selectors';
 import { actionBuilder } from './module';
-import styles from './styles';
 
 export const PAGE_SIZE = 5;
 
@@ -23,10 +22,10 @@ export const CountriesList = ({ countries, loadCountries, hasSucceeded, hasError
       { hasSucceeded && (
         <>
           <ul style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', listStyleType: 'none'}} data-testid="countries-list">
-            { countries.map(({ name, flag }) => (<li key={name}>
+            { countries.map(({ name, flag, alpha3Code }) => (<li key={name}>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                   <div><img src={flag} alt={name} style={{ width: '1rem', height: '1rem' }} /></div>
-                  <div style={{ marginLeft: '0.25rem' }}>{name}</div>
+                  <div style={{ marginLeft: '0.25rem' }}><Link to={`/country-details/${alpha3Code}`}>{name}</Link></div>
                 </div>
               </li>)) }
           </ul>
@@ -36,11 +35,11 @@ export const CountriesList = ({ countries, loadCountries, hasSucceeded, hasError
               pageRangeDisplayed={3}
               marginPagesDisplayed={2}
               onPageChange={({ selected }) => setPage(selected)}
-              containerClassName={css(styles.pagerContainer)}
-              pageClassName={css(styles.pagerPage)}
-              activeClassName={css(styles.pagerActivePage)}
-              nextClassName={css(styles.pagerPage)}
-              previousClassName={css(styles.pagerPage)}
+              containerClassName="pagerContainer"
+              pageClassName="pagerPage"
+              activeClassName="pagerActivePage"
+              nextClassName="pagerPage"
+              previousClassName="pagerPage"
               forcePage={page}
             />
           </section>

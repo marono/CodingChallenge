@@ -16,8 +16,6 @@
 
 * As I was running out of time I've only included one set of tests for the selectors / epics and those are in the HealthStatus module.
 
-* <CountriesList /> has a full set of tests.
+* Didn't add paging validation on the server side, my favourite approach would be FluentValidator. Also there's no vlaidation for the country details.
 
-* Didn't paging validation on the server side, my favourite approach would be FluentValidator
-
-* Had to add `aphrodite` to the UI just because the paging component uses class names, initially worked with inline styling as it was faster.
+* Should implement request cancellation when user navigates somewhere else and a a countries/country details load is already in progress.
