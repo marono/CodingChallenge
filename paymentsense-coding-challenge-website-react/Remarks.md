@@ -6,15 +6,15 @@
 
 * Normally I'd have an integration test project for the server side, which I ran out of time so didn't add here. I favour an interted test pyramid for APIs where as much as possible is tests as an integration test and unit tests are used for scenarios where integration tests are difficult to write. This gives me a very good level of trust in the code + a good safety net for refactorings further down the line.
 
-* Swagger
+* Swagger would be nice
 
-* Request logging
+* Request logging is required for a production ready version (haven't added it)
 
 * Added Poly retries and circuit breaker
 
 * Added error handling middleware
 
-* As I was running out of time I've only included one set of tests for the selectors / epics and those are in the HealthStatus module.
+* As I was running out of time I've only included one set of tests for the selectors / epics and those are in the HealthStatus module. Tests are mostly missing on server side as well.
 
 * Didn't add paging validation on the server side, my favourite approach would be FluentValidator. Also there's no vlaidation for the country details.
 
