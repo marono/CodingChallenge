@@ -19,16 +19,21 @@ describe('CountriesList />', () => {
     const initialState = {
       countries: {
         countries: [],
-        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE
+        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE,
+        start: 0,
+        end: 0,
+        size: 0
       }
     }
 
-    const { rerender } = render(<CountriesList />, { initialState: initialState });
-    store.dispatch(actionBuilder.countiesListSuccess(countries));
+    const { rerender, container } = render(<CountriesList />, { initialState: initialState });
     rerender(<CountriesList />, {
       countries: {
         countries,
-        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_SUCCEEDED
+        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_SUCCEEDED,
+        start: 0,
+        end: 2,
+        size: 5
       }
     });
 
@@ -39,6 +44,10 @@ describe('CountriesList />', () => {
     expect(screen.getByText(countries[1].name)).toBeInTheDocument();
 
     expect(screen.queryByTestId('countries-loading')).toBeNull();
+
+    const pager = screen.getByTestId('country-list-pager');
+    expect(pager.querySelector('li > a[aria-current="page"]')).toBeInTheDocument();
+    expect(pager.querySelector('li > a[aria-current="page"]')?.textContent).toBe("1");
   });
 
   test('triggers countries load', () => {
@@ -48,14 +57,17 @@ describe('CountriesList />', () => {
       initialState: {
         countries: {
           countries: [],
-          loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE
+          loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE,
+          start: 0,
+          end: 0,
+          size: 0
         },
       },
       dispatch: dispatchHandler
     });
 
     expect(dispatchHandler).toHaveBeenCalledTimes(1);
-    expect(dispatchHandler).toHaveBeenCalledWith(actionBuilder.countriesListRequest());
+    expect(dispatchHandler).toHaveBeenCalledWith(actionBuilder.countriesListRequest({ start: 0, end: 4 }));
   });
 
   test('shows loading widget', () => {
@@ -63,7 +75,10 @@ describe('CountriesList />', () => {
       initialState: {
         countries: {
           countries: [],
-          loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE
+          loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE,
+          start: 0,
+          end: 0,
+          size: 0
         },
       }
     });
@@ -71,7 +86,10 @@ describe('CountriesList />', () => {
     rerender(<CountriesList />, {
       countries: {
         countries: [],
-        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_INPROGRESS
+        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_INPROGRESS,
+        start: 0,
+        end: 0,
+        size: 0
       }
     });
 
@@ -84,7 +102,10 @@ describe('CountriesList />', () => {
       initialState: {
         countries: {
           countries: [],
-          loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE
+          loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_NONE,
+          start: 0,
+          end: 0,
+          size: 0
         },
       }
     });
@@ -92,7 +113,10 @@ describe('CountriesList />', () => {
     rerender(<CountriesList />, {
       countries: {
         countries: [],
-        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_FAILED
+        loadStatus: countriesRequestStatus.COUNTRIES_REQUEST_STATUS_FAILED,
+        start: 0,
+        end: 0,
+        size: 0
       }
     });
 

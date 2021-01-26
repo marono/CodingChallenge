@@ -18,4 +18,6 @@
 
 * <CountriesList /> has a full set of tests.
 
-## Reminders to myself
+* Didn't paging validation on the server side, my favourite approach would be FluentValidator
+
+* Had to add `aphrodite` to the UI just because the paging component uses class names, initially worked with inline styling as it was faster.

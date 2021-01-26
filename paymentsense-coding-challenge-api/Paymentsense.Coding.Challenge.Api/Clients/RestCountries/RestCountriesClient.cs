@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -22,7 +23,8 @@ namespace Paymentsense.Coding.Challenge.Api.Clients.RestCountries {
                 throw new UpstreamException(response.RequestMessage.RequestUri, response.StatusCode);
             }
 
-            return await response.ReadContentAsync<IEnumerable<Country>>();
+            var responseData = await response.ReadContentAsync<IEnumerable<Contract.Country>>();
+            return responseData.Select(c => new Country { Name = c.Name, Flag = c.Flag });
         }
     }
 }

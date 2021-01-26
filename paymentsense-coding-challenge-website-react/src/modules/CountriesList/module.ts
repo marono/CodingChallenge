@@ -12,9 +12,21 @@ export const actionTypes = {
   COUNTRIES_LIST_FAILURE
 };
 
+export type LoadCountriesPayload = {
+  start: number;
+  end: number;
+}
+
+type CountryPayload = {
+  countries: Array<Country>;
+  start: number;
+  end: number;
+  size: number;
+}
+
 export const actionBuilder = ({
-  countriesListRequest: createAction(COUNTRIES_LIST_REQUEST),
-  countiesListSuccess: createAction<Country[]>(COUNTRIES_LIST_SUCCESS),
+  countriesListRequest: createAction<LoadCountriesPayload>(COUNTRIES_LIST_REQUEST),
+  countiesListSuccess: createAction<CountryPayload>(COUNTRIES_LIST_SUCCESS),
   countriesListFailure: createAction(COUNTRIES_LIST_FAILURE),
 });
 

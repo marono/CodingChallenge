@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Bogus;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
@@ -17,12 +19,14 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers
         private readonly CountriesController Subject;
         private readonly Faker<Country> countryFaker = new Faker<Country>()
             .StrictMode(true)
-            .RuleFor(t => t.Name, v => v.Random.String(10));
+            .RuleFor(t => t.Name, v => v.Lorem.Word())
+            .RuleFor(t => t.Flag, v => v.Lorem.Word());
 
 
         public CountriesControllerTests()
         {
             Subject = new CountriesController(restCountriesClientMock.Object);
+            Subject.ControllerContext.HttpContext = new DefaultHttpContext();
         }
 
         [Fact]
@@ -31,10 +35,11 @@ namespace Paymentsense.Coding.Challenge.Api.Tests.Controllers
             var countries = countryFaker.Generate(10);
             restCountriesClientMock.Setup(s => s.GetAllAsync()).ReturnsAsync(countries);
 
-            var result = (await Subject.GetAllAsync()).Result as OkObjectResult;
+            var result = (await Subject.GetAllAsync("items=0-5")).Result as OkObjectResult;
 
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
-            result.Value.Should().Be(countries);
+            (result.Value as IEnumerable<Country>).Should().ContainInOrder(countries.Take(6));
+            Subject.Response.Headers["Content-Range"].Should().Equal($"items 0-5/10");
         }
     }
 }

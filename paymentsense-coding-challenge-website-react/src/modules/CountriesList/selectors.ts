@@ -9,3 +9,9 @@ export const selectCountries = createSelector(countriesState, state => state.cou
 export const haveCountriesLoadedSucceesfully = createSelector(countriesState, state => state.loadStatus === countriesRequestStatus.COUNTRIES_REQUEST_STATUS_SUCCEEDED);
 
 export const hasCountriesLoadFailed = createSelector(countriesState, state => state.loadStatus === countriesRequestStatus.COUNTRIES_REQUEST_STATUS_FAILED);
+
+export const selectPager = createSelector(countriesState, state => ({
+  start: state.start,
+  end: state.end,
+  size: state.size
+}));
